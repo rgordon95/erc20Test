@@ -42,7 +42,7 @@ contract multiSigWallet {
         }
 
         if (approvalsNum == minApprovers) {
-            beneficiary.transfer(address(this).balance);
+            beneficiary.send(address(this).balance);
             selfdestruct(owner);
         }
 
