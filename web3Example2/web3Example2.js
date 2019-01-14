@@ -4,7 +4,7 @@ let solc = require('solc');
 let Web3 = require('web3');
 
 let contract = compileCotnract();
-ket web3 = createWeb3();
+let web3 = createWeb3();
 let sender = '0x...';
 
 deployContract(web3, contract, sender)
