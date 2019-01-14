@@ -1,3 +1,7 @@
+//this file is very similar to voter3 but does not use features that were experimental in 0.4.x
+//changes are not providing list of options in the constructor and
+// instead calling addOption and startVoting methods (startVoting has the old constructor function from before)
+
 pragma solidity ^0.4.0;
 
 contract Voter {
