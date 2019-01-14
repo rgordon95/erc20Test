@@ -6,7 +6,7 @@ let Web3 = require('web3');
 
 let contract = compileContract();
 let web3 = createWeb3();
-let sender = '0x...'; //need to replace with real address
+let sender = '0x64A5e683Ded36aaAfd87e441fa230Ed0E6a55788'; //need to replace with real address (this is a test address for rinkeby)
 
 deployContract(web3, contract, sender)
   .then(function () {
@@ -18,7 +18,7 @@ deployContract(web3, contract, sender)
 
   function compileContract() { //within this the contract gets selected for compiling, compiled + optimized
     let compilerInput = { //defines what to pass into solc for compiling
-      'Voter': fs.readFileSync('Voter.sol', 'utf-8') //reads file using fs
+      'Voter': fs.readFileSync('Voter.sol', 'utf8') //reads file using fs
     };
 
     console.log('Compiling the contract');
@@ -26,11 +26,11 @@ deployContract(web3, contract, sender)
     let compiledContract = solc.compile({sources: compilerInput}, 1);
 
     //Get compiled contract
-    let contract = compuledcontract.contracts['Voter:Voter']; //voter contract (name of contract within file): // Voter file (filename of contract)
+    let contract = compiledContract.contracts['Voter:Voter'] //voter contract (name of contract within file): // Voter file (filename of contract)
 
     // Save contract's ABI
     let abi = contract.interface;
-    fs.writeFileSync('abi.json, abi'); //writes abi.json using fs module
+    fs.writeFileSync('abi.json', abi); //writes abi.json using fs module
 
     return contract; //returns selected contract in optimized and compiled form (contract.abi as json)
 
@@ -52,7 +52,7 @@ async function deployContract(web3, contract, sender) {
   let gasEstimate = await web3.eth.estimateGas({data: bytecode}); //built in method to determine likely gas requirement
 
   console.log('Deploying the contract....');
-  const constractInstance = await(Voter.deploy({ //deploy bytecode locally
+  const constractInstance = await Voter.deploy({ //deploy bytecode locally
     data: bytecode
   })
   .send({ //send the deployed contract to network from sender with gasEstimate attached
@@ -66,5 +66,5 @@ async function deployContract(web3, contract, sender) {
     console.log(`confirmation number: ${confirmationNumber}`);
   })
 
-  console.log(`contract address: ${contractInstance.options.address}`); //returns address of contract to allow interaction with it after it is deployed
+//  console.log(`contract address: ${contractInstance.options.address}`); //returns address of contract to allow interaction with it after it is deployed
 } //end deployContract
