@@ -4,9 +4,9 @@ let fs = require('fs');
 let solc = require('solc');
 let Web3 = require('web3');
 
-let contract = compileCotnract();
+let contract = compileContract();
 let web3 = createWeb3();
-let sender = '0x...';
+let sender = '0x...'; //need to replace with real address
 
 deployContract(web3, contract, sender)
   .then(function () {
