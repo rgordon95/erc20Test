@@ -1,12 +1,12 @@
 'esversion: 6';
 
-let fs = require('fs');
-let solc = require('solc');
-let Web3 = require('web3');
+const fs = require('fs');
+const solc = require('solc');
+const Web3 = require('web3');
 
 let contract = compileContract();
 let web3 = createWeb3();
-let sender = '0x64A5e683Ded36aaAfd87e441fa230Ed0E6a55788'; //need to replace with real address (this is a test address for rinkeby)
+const sender = '0x64A5e683Ded36aaAfd87e441fa230Ed0E6a55788'; //need to replace with real address (this is a test address for rinkeby)
 
 deployContract(web3, contract, sender)
   .then(function () {
@@ -29,9 +29,10 @@ deployContract(web3, contract, sender)
     //Get compiled contract
     let contract = compiledContract.contracts['Voter:Voter']; //voter contract (name of contract within file): // Voter file (filename of contract)
     console.warn(contract);
+
     // Save contract's ABI
-    let abi = contract.interface;
-    fs.writeFileSync('abi.json', abi); //writes abi.json using fs module
+  //  let abi = contract.interface;
+  //  fs.writeFileSync('abi.json', abi); //writes abi.json using fs module
 
     return contract; //returns selected contract in optimized and compiled form (contract.abi as json)
 
@@ -53,7 +54,7 @@ async function deployContract(web3, contract, sender) {
   let gasEstimate = await web3.eth.estimateGas({data: bytecode}); //built in method to determine likely gas requirement
 
   console.log('Deploying the contract....');
-  const constractInstance = await Voter.deploy({ //deploy bytecode locally
+  const contractInstance = await Voter.deploy({ //deploy bytecode locally
     data: bytecode
   })
   .send({ //send the deployed contract to network from sender with gasEstimate attached
@@ -67,5 +68,5 @@ async function deployContract(web3, contract, sender) {
     console.log(`confirmation number: ${confirmationNumber}`);
   })
 
-//  console.log(`contract address: ${contractInstance.options.address}`); //returns address of contract to allow interaction with it after it is deployed
+  console.log(`contract address: ${contractInstance.options.address}`); //returns address of contract to allow interaction with it after it is deployed
 } //end deployContract

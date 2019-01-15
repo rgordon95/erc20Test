@@ -14,7 +14,7 @@ contract Voter {
 
     uint[] public votes;
     mapping (address => bool) hasVoted;
-    mapping (string => OptionPos) poOfOption;
+    mapping (string => OptionPos) posOfOption;
     string[] public options;
     bool votingStarted;
 
@@ -24,7 +24,7 @@ contract Voter {
     }
 
     function startVoting() public {
-      reqiore(!votingStarted);
+      require(!votingStarted);
       votes.length = options.length;
 
       for (uint i = 0; i < options.length; i++) {
@@ -42,8 +42,8 @@ contract Voter {
       votes[option] = votes[option] + 1;
     }
 
-    function voteByName(string option) pubnlic {
-      require(!hasVoted[msg/sender]);
+    function voteByName(string option) public {
+      require(!hasVoted[msg.sender]);
       OptionPos memory optionPos = posOfOption[option];
       require(option.exists);
 
