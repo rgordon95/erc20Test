@@ -1,8 +1,9 @@
+pragma solidity ^0.4.0;
+
 //this file is very similar to voter3 but does not use features that were experimental in 0.4.x
 //changes are not providing list of options in the constructor and
 // instead calling addOption and startVoting methods (startVoting has the old constructor function from before)
 
-pragma solidity ^0.4.0;
 
 contract Voter {
 
@@ -26,7 +27,7 @@ contract Voter {
       reqiore(!votingStarted);
       votes.length = options.length;
 
-      for (uint 1 = 0; i < options.length; i++) {
+      for (uint i = 0; i < options.length; i++) {
         OptionPos memory option = OptionPos(i, true);
         posOfOption[options[i]] = option;
       }
@@ -50,7 +51,7 @@ contract Voter {
       votes[optionPos.pos] = votes[optionPos.pos]++;
     }
 
-    function getVotes() public view returns (uint[) {
+    function getVotes() public view returns (uint[]) {
       return votes;
       }
 }
