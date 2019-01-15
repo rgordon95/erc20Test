@@ -16,7 +16,8 @@ deployContract(web3, contract, sender)
     console.log(`deployment FAILED with error: ${error}`);
   })
 
-  function compileContract() { //within this the contract gets selected for compiling, compiled + optimized
+//within this the contract gets selected for compiling, compiled + optimized
+  function compileContract() {
     let compilerInput = { //defines what to pass into solc for compiling
       'Voter': fs.readFileSync('Voter.sol', 'utf8') //reads file using fs
     };
@@ -24,10 +25,10 @@ deployContract(web3, contract, sender)
     console.log('Compiling the contract');
     //compile and optimize the contract
     let compiledContract = solc.compile({sources: compilerInput}, 1);
-
+    console.warn('compiled contract ===' + compiledContract);
     //Get compiled contract
-    let contract = compiledContract.contracts['Voter:Voter'] //voter contract (name of contract within file): // Voter file (filename of contract)
-
+    let contract = compiledContract.contracts['Voter:Voter']; //voter contract (name of contract within file): // Voter file (filename of contract)
+    console.warn(contract);
     // Save contract's ABI
     let abi = contract.interface;
     fs.writeFileSync('abi.json', abi); //writes abi.json using fs module
