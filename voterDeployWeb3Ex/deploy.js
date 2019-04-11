@@ -4,7 +4,7 @@ let Web3 = require('web3');
 
 let contract = compileContract();
 let web3 = createWeb3();
-let sender = '0x718c9e45584859a43ae708d1bff0b64043ef6a35';
+let sender = '0x892fb75cac75ded84bd13e02b3962fcca2730b8d';
 
 deployContract(web3, contract, sender)
     .then(function () {
@@ -67,8 +67,8 @@ async function deployContract(web3, contract, sender) {
     .on('transactionHash', function(transactionHash) {
         console.log(`Transaction hash: ${transactionHash}`);
     })
-    .on('confirmation', function(confirmationNumber, receipt) {
-        console.log(`Confirmation number: ${confirmationNumber}`);
+    .on('receipt', (receipt) => {
+        console.log(receipt.contractAddress)
     })
 
     console.log(`Contract address: ${contractInstance.options.address}`);
