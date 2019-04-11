@@ -1,4 +1,4 @@
-'esversion: 6';
+/*jshint esversion: 6 */
 
 const fs = require('fs');
 const solc = require('solc');
@@ -14,25 +14,37 @@ deployContract(web3, contract, sender)
   })
   .catch(function (error) {
     console.log(`deployment FAILED with error: ${error}`);
-  })
+  });
 
 //within this the contract gets selected for compiling, compiled + optimized
   function compileContract() {
-    let compilerInput = { //defines what to pass into solc for compiling
-      'Voter': fs.readFileSync('Voter.sol', 'utf8') //reads file using fs
-    };
-
+    let compilerInput = {
+      language: 'Solidity',
+      sources: {//defines what to pass into solc for compiling
+      'Voter': {
+         content: fs.readFileSync('Voter.sol', 'utf8')
+       } //reads file using fs
+    },
+    settings: {
+      outputSelection: {
+        '*': {
+          '*': [ '*' ]
+        }
+      }
+    }
+  };
     console.log('Compiling the contract');
     //compile and optimize the contract
-    let compiledContract = solc.compile({sources: compilerInput}, 1);
-    console.warn('compiled contract ===' + compiledContract);
+    let output = JSON.parse(solc.compile(JSON.stringify(compilerInput)));
     //Get compiled contract
-    let contract = compiledContract.contracts['Voter:Voter']; //voter contract (name of contract within file): // Voter file (filename of contract)
-    console.warn(contract);
+    console.log(output);
+    let contract = output.sources.Voter
+    console.log('contrttarct' + contract);
+    //voter contract (name of contract within file): // Voter file (filename of contract)
 
     // Save contract's ABI
-  //  let abi = contract.interface;
-  //  fs.writeFileSync('abi.json', abi); //writes abi.json using fs module
+    let abi = contract.abi;
+    fs.writeFileSync('abi.json', JSON.stringify(contract)); //writes abi.json using fs module
 
     return contract; //returns selected contract in optimized and compiled form (contract.abi as json)
 
@@ -42,19 +54,19 @@ deployContract(web3, contract, sender)
     //create an instance of a web3 class & specify provider it should use (geth port)
     let web3 = new Web3();
     web3.setProvider(
-        new web3.providers.HttpProvider('http://localhost:8545'));
+        new web3.providers.HttpProvider('http://localhost:7545'));
 
     return web3; //return new web3 instance
   } //end createWeb3
 
 // takes web3 instance created above, the contract and senders address
 async function deployContract(web3, contract, sender) {
-  let Voter = new web3.eth.Contract(JSON.parse(contract.interface)); //parses generated contract into JSON & creates new contract instance for deployment
-  let bytecode = '0x' + contract.bytecode; //add prefix for bytecode
+  let VoterContract = new web3.eth.Contract(contract.abi); //parses generated contract into JSON & creates new contract instance for deployment
+  let bytecode = '0x' + contract.evm.bytecode.object; //add prefix for bytecode
   let gasEstimate = await web3.eth.estimateGas({data: bytecode}); //built in method to determine likely gas requirement
 
   console.log('Deploying the contract....');
-  const contractInstance = await Voter.deploy({ //deploy bytecode locally
+  const contractInstance = await VoterContract.deploy({ //deploy bytecode locally
     data: bytecode
   })
   .send({ //send the deployed contract to network from sender with gasEstimate attached
@@ -66,7 +78,7 @@ async function deployContract(web3, contract, sender) {
   })
   .on('confirmation', function(confirmationNumber, receipt) {
     console.log(`confirmation number: ${confirmationNumber}`);
-  })
+  });
 
   console.log(`contract address: ${contractInstance.options.address}`); //returns address of contract to allow interaction with it after it is deployed
 } //end deployContract

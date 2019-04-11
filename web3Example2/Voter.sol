@@ -1,9 +1,8 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.5.0;
 
 //this file is very similar to voter3 but does not use features that were experimental in 0.4.x
 //changes are not providing list of options in the constructor and
 // instead calling addOption and startVoting methods (startVoting has the old constructor function from before)
-
 
 contract Voter {
 
@@ -18,13 +17,13 @@ contract Voter {
     string[] public options;
     bool votingStarted;
 
-    function addOption(string option) public {
-      require(!votingStarted);
+    function addOption(string memory option) public {
+      require(!votingStarted, "Voting has already started!");
       options.push(option);
     }
 
     function startVoting() public {
-      require(!votingStarted);
+      require(!votingStarted, "Voting has already started!!");
       votes.length = options.length;
 
       for (uint i = 0; i < options.length; i++) {
@@ -35,23 +34,23 @@ contract Voter {
     }
 
     function vote(uint option) public {
-      require(0 <= option && option < options.length);
-      require(!hasVoted[msg.sender]);
+      require(0 <= option && option < options.length, "Invalid option");
+      require(!hasVoted[msg.sender], "Account has already voted!");
 
       hasVoted[msg.sender] = true;
       votes[option] = votes[option] + 1;
     }
 
-    function voteByName(string option) public {
-      require(!hasVoted[msg.sender]);
+    function voteByName(string memory option) public {
+      require(!hasVoted[msg.sender], "Account has already voted");
       OptionPos memory optionPos = posOfOption[option];
-      require(option.exists);
+      require(option.exists, "option does not exist");
 
       hasVoted[msg.sender] = true;
       votes[optionPos.pos] = votes[optionPos.pos]++;
     }
 
-    function getVotes() public view returns (uint[]) {
+    function getVotes() public view returns (uint[] memory) {
       return votes;
       }
 }
