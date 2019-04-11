@@ -1,57 +1,47 @@
-//takes sender, number of approvers needed, and receiver (beneficiary)
-//if approvals are met it will send the funds from sender to receiver
-
 pragma solidity ^0.5.0;
 pragma experimental ABIEncoderV2;
 
-contract multiSigWallet {
-    uint minApprovers; //number of people to approve before funds dispersed to receiver
+contract MultiSigWallet {
+    uint minApprovers;
 
-    address beneficiary; //address of receipient
-    address owner; //sender of funds
+    address payable beneficiary;
+    address payable owner;
 
-    mapping (address => bool) approvedBy; //checks who approved
-    mapping (address => bool) isApprover; //checks if they are able to approve
-    uint approvalsNum; //starts at 0, checks number of approvals so far
+    mapping (address => bool) approvedBy;
+    mapping (address => bool) isApprover;
+    uint approvalsNum;
 
-    constructor(
-        address[] memory _approvers,
-        uint _minApprovers,
-        address _beneficiary
-        ) public payable {
-
-        require(_minApprovers <= _approvers.length, "Required number of approvers should be less than or = to number of approvers");
+    constructor(address[] memory _approvers, uint _minApprovers, address payable _beneficiary) public payable {
+        require(
+            _minApprovers <= _approvers.length,
+            "Required number of approvers should be less than number of approvers");
 
         minApprovers = _minApprovers;
         beneficiary = _beneficiary;
         owner = msg.sender;
 
-        for (uint i = 0; i < _approvers.length; i++) { //loops over all submitted addresses that can be approvers
-          address approver = _approvers[i]; //takes the input address and assigns it to the mapping
-          isApprover[approver] = true; //assigns true to the isApprover field for the address input
+        for (uint i = 0; i < _approvers.length; i++) {
+            address approver = _approvers[i];
+            isApprover[approver] = true;
         }
+    }
 
-        }
-
-    function approve() public { //used by approvers to approve
+    function approve() public {
         require(isApprover[msg.sender], "Not an approver");
         if (!approvedBy[msg.sender]) {
-            approvalsNum++;
             approvedBy[msg.sender] = true;
-
+            approvalsNum++;
         }
 
         if (approvalsNum == minApprovers) {
             beneficiary.send(address(this).balance);
             selfdestruct(owner);
         }
-
     }
 
-    function reject() public { //used by approvers to reject
+    function reject() public {
         require(isApprover[msg.sender], "Not an approver");
 
-        selfdestruct(owner); //destroys contract due to no approval, returns funds to owner/sender
+        selfdestruct(owner);
     }
-
 }
