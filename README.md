@@ -10,7 +10,7 @@ This repo has a variety of example smart contracts, including extremely basic to
 a hello world example and a multisig wallet transactor.
 
 # basicExamples folder
-    contains a classic helloWorld solidity file in solifity 0.4.x and basic multiSig wallet in 0.5.x
+    contains a classic helloWorld solidity file in solidity 0.4.x and basic multiSig wallet in 0.5.x
 
 # tokenTests folder
     contains examples / basic files for creating an ERC20 Token with explanations
@@ -20,7 +20,8 @@ a hello world example and a multisig wallet transactor.
 
 # truffleFrameworkEx folder 
     Shows typical structure of a truffle framework project using Voter.sol example as well
-    contains unit testing, truffle config, deployment logic, interaction logic and the above mentioned voter contract
+    contains unit testing, truffle config, deployment logic, interaction logic 
+    and the above mentioned voter contract
 
 # truffleRefactor folder
     this folder uses the same code found in the voterDeployWeb3Ex folder but slightly modified for running with truffle. 
