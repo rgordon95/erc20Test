@@ -12,6 +12,7 @@ a hello world example and a multisig wallet transactor.
 
 # basicExamples folder
     contains a classic helloWorld solidity file in solidity 0.4.x and basic multiSig wallet in 0.5.x
+    also contains an example of contract inheritence (similar to extending a class)
 
 # tokenTests folder
     contains examples / basic files for creating an ERC20 Token with explanations
@@ -31,6 +32,7 @@ a hello world example and a multisig wallet transactor.
 # MetaCoin folder
    this folder contains an unboxed example from truffle.
 
-# advancedSmartContractEx
+# advancedSmartContractEx folder
    this folder contains a crowdfunding contract 
-   to run the contents of this folder first install dependencies by running 'npm install' in the project directory
+   to run the contents of this folder first install dependencies by running 
+     >'npm install' in the project directory
