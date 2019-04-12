@@ -1,10 +1,11 @@
 # Ethereum Exploration (ERC20 Tokens & Smart Contracts)
-Exploring smart contracts and ERC20 tokens using Solidity, 
-web3.js, 
-Geth (go-eth),
-truffle framework,
-ganache GUI/CLI 
-and classic ES6 JavaScript
+Exploring smart contracts and ERC20 tokens using:
+>Solidity, 
+>web3.js, 
+>Geth (go-eth),
+>truffle framework,
+>ganache GUI/CLI 
+>and classic ES6 JavaScript
 
 This repo has a variety of example smart contracts, including extremely basic to moderately advanced deployable voting contracts, 
 a hello world example and a multisig wallet transactor.
@@ -25,4 +26,11 @@ a hello world example and a multisig wallet transactor.
 
 # truffleRefactor folder
     this folder uses the same code found in the voterDeployWeb3Ex folder but 
-    slightly modified for running with truffle. 
+    slightly modified for running with truffle and ganache.
+
+# MetaCoin folder
+   this folder contains an unboxed example from truffle.
+
+# advancedSmartContractEx
+   this folder contains a crowdfunding contract 
+   to run the contents of this folder first install dependencies by running 'npm install' in the project directory
