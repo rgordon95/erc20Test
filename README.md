@@ -24,4 +24,5 @@ a hello world example and a multisig wallet transactor.
     and the above mentioned voter contract
 
 # truffleRefactor folder
-    this folder uses the same code found in the voterDeployWeb3Ex folder but slightly modified for running with truffle. 
+    this folder uses the same code found in the voterDeployWeb3Ex folder but 
+    slightly modified for running with truffle. 
