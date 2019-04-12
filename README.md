@@ -1,4 +1,4 @@
-# erc20Test
+# Ethereum Exploration (ERC20 Tokens & Smart Contracts)
 Exploring smart contracts and ERC20 tokens using Solidity, 
 web3.js, 
 Geth (go-eth),
