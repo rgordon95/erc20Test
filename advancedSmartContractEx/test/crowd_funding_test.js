@@ -47,7 +47,7 @@ contract('CrowdFundingWithDeadline', function(accounts) {
 
     it('confirms you cannot contribute after deadline', async function() {
         try {
-            await contract.setCurrentTime(601);
+            await contract.setCurrentTime(601); // 1 second after deadline
             await contract.sendTransaction({
                 value: ONE_ETH,
                 from: contractCreator

@@ -15,7 +15,7 @@ a hello world example and a multisig wallet transactor.
     also contains an example of contract inheritence (similar to extending a class)
 
 # tokenTests folder
-    contains examples / basic files for creating an ERC20 Token with explanations
+    contains examples / basic files for creating an ERC20 Token with explanations.
 
 # web3Example2 folder
     contains Voter.sol voting contract written using solidity 0.5.x
@@ -23,7 +23,7 @@ a hello world example and a multisig wallet transactor.
 # truffleFrameworkEx folder 
     Shows typical structure of a truffle framework project using Voter.sol example as well
     contains unit testing, truffle config, deployment logic, interaction logic 
-    and the above mentioned voter contract
+    and the above mentioned voter contract.
 
 # truffleRefactor folder
     this folder uses the same code found in the voterDeployWeb3Ex folder but 
@@ -35,4 +35,8 @@ a hello world example and a multisig wallet transactor.
 # advancedSmartContractEx folder
    this folder contains a crowdfunding contract 
    to run the contents of this folder first install dependencies by running 
-     >'npm install' in the project directory
+     'npm install' in the project directory.
+
+# react-truffle folder 
+   this folder builds off the advancedSmartContractEx folder example of a crowdfunding contract
+   and couples it with a React frontend using create-react-app, React, React Router & Semantic UI CSS library.

@@ -18,7 +18,8 @@
       ],
       "payable": false,
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "signature": "0xd8916bb9"
     },
     {
       "constant": true,
@@ -37,7 +38,8 @@
       ],
       "payable": false,
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "signature": "0x529b380f"
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.5.0+commit.1d4f565a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"timeInMin\",\"type\":\"uint256\"}],\"name\":\"minutesToSeconds\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"pure\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"sumInEth\",\"type\":\"uint256\"}],\"name\":\"etherToWei\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/miss10n-contr0l/Documents/gh/ethereumExploration/advancedSmartContractEx/contracts/Utils.sol\":\"Utils\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/miss10n-contr0l/Documents/gh/ethereumExploration/advancedSmartContractEx/contracts/Utils.sol\":{\"keccak256\":\"0x4187e7b2592c13f8ee99cb04d99d371dddcb5164d8a3905b9815d53aa46762f3\",\"urls\":[\"bzzr://b8716865eb0427801dbf8858f66abd4d7b14349567fd91804c687f5171165b61\"]}},\"version\":1}",
@@ -705,9 +707,16 @@
     "name": "solc",
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x1Ba5252996fe34006Fc35648DEE3086D09DFcD94",
+      "transactionHash": "0x40bad731b0f121f46a1a1d6468c6ea980f5eb8ebf8e3db517f54b52ee0a7e082"
+    }
+  },
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-12T18:28:04.433Z",
+  "updatedAt": "2019-04-13T05:53:49.220Z",
   "devdoc": {
     "methods": {}
   },
